@@ -5,20 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smounafi <smounafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 23:24:41 by smounafi          #+#    #+#             */
-/*   Updated: 2023/01/10 23:28:41 by smounafi         ###   ########.fr       */
+/*   Created: 2023/01/11 17:48:04 by smounafi          #+#    #+#             */
+/*   Updated: 2023/01/11 18:43:32 by smounafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-static void	ft_confirm(int signal)
-{
-	if (signal == SIGUSR1)
-		ft_printf("\033[0;32mQSL!\033[0;32m\n", 1);
-	else
-		ft_printf("\033[0;32mQSL!\033[0;32m\n", 1);
-}
 
 void	bits_passing(int pid, char *str, int len)
 {
@@ -36,10 +28,15 @@ void	bits_passing(int pid, char *str, int len)
 			else
 				kill(pid, SIGUSR2);
 			bit++;
-			usleep(100);
+			usleep(300);
 		}
 		i++;
 	}
+}
+
+void	confirm_reicept(int len)
+{
+	ft_printf("\e[92m%d signals sent successfully\n\e[92m", len);
 }
 
 int	check_args(int ac, char **av)
@@ -75,10 +72,9 @@ int	main(int ac, char **av)
 	{
 		pid = ft_atoi(av[1]);
 		str = av[2];
-        signal(SIGUSR1, ft_confirm);
-		signal(SIGUSR2, ft_confirm);
 		bits_passing(pid, str, ft_strlen(str));
-		bits_passing(pid, "\n", ft_strlen(str));
+		bits_passing(pid, "\n", 1);
+		confirm_reicept(ft_strlen(str));
 	}
 	return (0);
 }

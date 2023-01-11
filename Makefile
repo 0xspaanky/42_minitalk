@@ -28,7 +28,7 @@ $(NAME_C) : $(OBJ_C)
 $(NAME_S) : $(OBJ_S)
 	$(CC) $(CFLAGS) $(OBJ_S) -o $(NAME_S)
 
-bonus: $(OBJ_C_B) $(OBJ_S_B)
+bonus: $(NAME_C_B) $(NAME_S_B)
 
 $(NAME_C_B) : $(OBJ_C_B)
 	$(CC) $(CFLAGS) $(OBJ_C_B) -o $(NAME_C_B)

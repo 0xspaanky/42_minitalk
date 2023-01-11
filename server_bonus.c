@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smounafi <smounafi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/11 17:48:21 by smounafi          #+#    #+#             */
+/*   Updated: 2023/01/11 18:01:45 by smounafi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
-void	bit_handler(int sig, siginfo_t *info, void *s)
+void	bit_handler(int sig)
 {
 	static int	i;
 	static int	bit;
 
-    (void)info;
-	(void)s;
 	if (sig == SIGUSR1)
 		i = i | (0x01 << bit);
 	bit++;
@@ -15,14 +25,12 @@ void	bit_handler(int sig, siginfo_t *info, void *s)
 		ft_printf("%c", i);
 		bit = 0;
 		i = 0;
-        kill(info->si_pid, SIGUSR2);
 	}
 }
 
 int	main(int ac, char **av)
 {
 	int	pid;
-    struct sigaction	sig;
 
 	pid = getpid();
 	(void)av;
@@ -33,13 +41,10 @@ int	main(int ac, char **av)
 	}
 	ft_printf("\033[94mPID\033[0m \033[96m->\033[0m %d\n", pid);
 	ft_printf("\033[90mWaiting for a message...\033[0m\n");
-    sig.sa_sigaction = bit_handler;
-	sigemptyset(&sig.sa_mask);
-	sig.sa_flags = 0;
 	while (ac == 1)
 	{
-		sigaction(SIGUSR1, &sig, NULL);
-		sigaction(SIGUSR2, &sig, NULL);
+		signal(SIGUSR1, bit_handler);
+		signal(SIGUSR2, bit_handler);
 		pause();
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: smounafi <smounafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:56:10 by smounafi          #+#    #+#             */
-/*   Updated: 2023/01/07 14:15:29 by smounafi         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:39:02 by smounafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	bits_passing(int pid, char *str, int len)
 			else
 				kill(pid, SIGUSR2);
 			bit++;
-			usleep(100);
+			usleep(300);
 		}
 		i++;
 	}
@@ -68,7 +68,7 @@ int	main(int ac, char **av)
 		pid = ft_atoi(av[1]);
 		str = av[2];
 		bits_passing(pid, str, ft_strlen(str));
-		bits_passing(pid, "\n", ft_strlen(str));
+		bits_passing(pid, "\n", 1);
 	}
 	return (0);
 }

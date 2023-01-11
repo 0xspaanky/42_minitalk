@@ -6,7 +6,7 @@
 /*   By: smounafi <smounafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:04 by smounafi          #+#    #+#             */
-/*   Updated: 2023/01/11 18:57:11 by smounafi         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:14:16 by smounafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	bits_passing(int pid, char *str, int len)
 void	confirm_reicept(int len)
 {
 	ft_printf("\e[92m%d signals sent successfully\n\e[92m", len);
-    ft_printf("\e[92m%d Received successfully\n\e[92m", len);
+	ft_printf("\e[92m%d Received successfully\n\e[92m", len);
 }
 
 int	check_args(int ac, char **av)

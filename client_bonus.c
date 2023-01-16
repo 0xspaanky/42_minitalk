@@ -6,11 +6,11 @@
 /*   By: smounafi <smounafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:48:04 by smounafi          #+#    #+#             */
-/*   Updated: 2023/01/11 20:14:16 by smounafi         ###   ########.fr       */
+/*   Updated: 2023/01/15 22:06:53 by smounafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	bits_passing(int pid, char *str, int len)
 {
